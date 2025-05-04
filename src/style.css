@@ -1,6 +1,40 @@
 body {
   background-color: hsl(106, 74%, 62%);
-  height: 100vh;
-  width: 100vh;
+  height: 99vh;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
   color: white;
+}
+
+#content {
+  display: grid;
+  grid-template-rows: 10vh 90vh;
+  border: 5px solid rebeccapurple;
+}
+
+#bar {
+  display: grid;
+  grid-template-columns: 50vh 50vh;
+  border: 5px solid pink;
+}
+
+#information {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+}
+
+.days {
+  display: grid;
+  grid-template-rows: 30px 100px repeat(6, 40px);
+  border: 5px green;
+}
+#weather {
+  display: grid;
+  grid-template-rows: 60% 40%;
+}
+
+#facts {
+  border: 5px solid pink;
 }

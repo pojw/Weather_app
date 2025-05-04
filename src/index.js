@@ -1,4 +1,5 @@
 import "./style.css";
+import luffy from "./luffy.jpg";
 
 let dayList = [
   "today",
@@ -38,23 +39,59 @@ function getWeather() {
           date: response.days[i].datetime,
         };
       }
-      return myWeek;
-    })
-    .then(function (myWeek) {
       let content = document.getElementById("information");
+      content.textContent = "";
+
       for (let j = 0; j < dayList.length; j++) {
         let current_day = document.createElement("div");
-        let description = document.createElement("div");
-        description.textContent = "nice";
-        current_day.appendChild(description);
-        current_day.textContent += "hey";
+
+        let info = document.createElement("div");
+        info.textContent = "Description: " + myWeek[dayList[j]].description;
+
+        let date = document.createElement("div");
+        date.textContent = myWeek[dayList[j]].date;
+
+        let currentTemp = document.createElement("div");
+        currentTemp.textContent =
+          "Current temperature: " + myWeek[dayList[j]].currentTemp;
+
+        let feelsLike = document.createElement("div");
+        feelsLike.textContent = "Feels like: " + myWeek[dayList[j]].feelsLike;
+
+        let maxTemp = document.createElement("div");
+        maxTemp.textContent = "Max temperature: " + myWeek[dayList[j]].maxTemp;
+
+        let lowTemp = document.createElement("div");
+        lowTemp.textContent =
+          "lowest temperature: " + myWeek[dayList[j]].lowTemp;
+
+        let humidity = document.createElement("div");
+        humidity.textContent = "Humidity: " + myWeek[dayList[j]].humidity;
+
+        let rainCoverage = document.createElement("div");
+        rainCoverage.textContent =
+          "Rain coverage: " + myWeek[dayList[j]].rainCoverage;
+        let photo = document.createElement("img");
+        photo.src = luffy;
+        photo.width = 100;
+        photo.height = 100;
+        current_day.appendChild(date);
+        current_day.appendChild(info);
+        current_day.appendChild(currentTemp);
+        current_day.appendChild(feelsLike);
+        current_day.appendChild(humidity);
+        current_day.appendChild(maxTemp);
+        current_day.appendChild(lowTemp);
+
+        current_day.appendChild(rainCoverage);
+        current_day.appendChild(photo);
+        current_day.classList.add("days");
+
         content.appendChild(current_day);
       }
+      return myWeek;
     });
 }
 
-function testing() {
-  getWeather();
-}
 let button = document.getElementById("button");
-button.addEventListener("click", () => testing());
+button.addEventListener("click", () => getWeather());
