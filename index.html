@@ -5,79 +5,27 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
+    <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script defer src="main.js"></script></head>
   <body>
-    <button id="reset-btn">Reset</button>
-
     <div id="content">
-      <div id="project-section">
-        <div id="projects">
-          <div class="project-box">coding</div>
-          <div class="project-box">gym</div>
-          <div class="project-box">slee[</div>
+      <div id="bar">
+        <div id="search_section">
+          <input type="text" id="place" />
+          <button id="search">Submit</button>
         </div>
-        <button id="open">add project</button>
-        <button id="open2">add tas</button>
+        <div id="metric">
+          <button id="tempF" class="pressed">Fahrenheit (°F)</button>
+          <button id="tempC" class="notpressed">Celsius (°C)</button>
+        </div>
       </div>
-      <div id="task-section">
-        <div class="task">work out</div>
-        <div class="task">sleep</div>
+      <div id="weather">
+        <div id="daySection">This is the weeks weather</div>
+        <div id="information"></div>
+        <div id="hourSection">This is the hour section</div>
+        <div id="facts"></div>
       </div>
     </div>
-    <section class="modal-container" id="modal">
-      <section class="modal">
-        <button class="close-btn" id="close">x</button>
-        <div class="modal-content">
-          <h1>Sign Up</h1>
-          <form class="modal-form">
-            <div>
-              <label for="project_name">Name</label>
-              <input
-                type="text"
-                id="project_name"
-                placeholder="Enter Name"
-                class="form-input"
-                maxlength="20"
-              />
-            </div>
-
-            <input
-              type="submit"
-              value="Submit"
-              class="submit-btn"
-              id="Submit"
-            />
-          </form>
-        </div>
-      </section>
-    </section>
-    <section class="modal-container" id="modal2">
-      <section class="modal">
-        <button class="close-btn" id="close2">x</button>
-        <div class="modal-content">
-          <h1>Sign Up</h1>
-          <form class="modal-form">
-            <div>
-              <label for="project_name">Name</label>
-              <input
-                type="text"
-                id="task_name"
-                placeholder="Enter task"
-                class="form-input"
-                maxlength="20"
-              />
-            </div>
-
-            <input
-              type="submit"
-              value="Submit"
-              class="submit-btn"
-              id="Submit2"
-            />
-          </form>
-        </div>
-      </section>
-    </section>
   </body>
 </html>
