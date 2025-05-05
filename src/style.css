@@ -1,6 +1,6 @@
 body {
   background-color: hsl(106, 74%, 62%);
-  height: 99vh;
+  height: vh;
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -32,9 +32,15 @@ body {
 }
 #weather {
   display: grid;
-  grid-template-rows: 60% 40%;
+  grid-template-rows: 1fr 8fr 1fr 4fr;
 }
 
 #facts {
   border: 5px solid pink;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+}
+
+.currentHour {
+  display: grid;
 }

@@ -89,6 +89,53 @@ function getWeather() {
 
         content.appendChild(current_day);
       }
+      const currentTime = 12;
+      //i like th idea of hour-6 and plus 6 to get the range of time ahnd the middle would be the curernt ime
+      let todayHours = {};
+      for (let i = currentTime - 6; i <= currentTime + 6; i++) {
+        todayHours[i] = {
+          description: response.days[0].hours[i].conditions,
+          currentTemp: response.days[0].hours[i].temp,
+          feelsLike: response.days[0].hours[i].feelslike,
+          humidity: response.days[0].hours[i].humidity,
+          date: response.days[0].hours[i].datetime,
+        };
+      }
+
+      let todaySection = document.getElementById("facts");
+      for (let i = currentTime - 6; i <= currentTime + 6; i++) {
+        let currentHour = document.createElement("div");
+
+        let description = document.createElement("div");
+        description.textContent = "Descripiton: " + todayHours[i].description;
+
+        let currentTemp = document.createElement("div");
+        currentTemp.textContent =
+          "Current Temperature: " + todayHours[i].currentTemp;
+
+        let feelsLike = document.createElement("div");
+        feelsLike.textContent = "Feels like:" + todayHours[i].feelsLike;
+
+        let humidity = document.createElement("div");
+        humidity.textContent = "Humidity: " + todayHours[i].humidity;
+
+        let date = document.createElement("div");
+        date.textContent = "Time: " + todayHours[i].date;
+
+        currentHour.appendChild(date);
+        currentHour.appendChild(description);
+        currentHour.appendChild(currentTemp);
+        currentHour.appendChild(feelsLike);
+        currentHour.appendChild(humidity);
+
+        currentHour.classList.add("currentHour");
+
+        todaySection.appendChild(currentHour);
+      }
+      console.log(todayHours);
+      console.log(currentTime);
+      console.log(response);
+
       return myWeek;
     });
 }
