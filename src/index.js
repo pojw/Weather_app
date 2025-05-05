@@ -1,5 +1,10 @@
 import "./style.css";
 import luffy from "./luffy.jpg";
+import wind from "./wind.png";
+import rain from "./rain.png";
+import snow from "./snow.png";
+import partyly from "./partly-cloudy-day.png";
+import clear from "./clear-day.png";
 
 let dayList = [
   "today",
@@ -14,7 +19,16 @@ let dayList = [
 let metric = "us";
 function getWeather() {
   let place = document.getElementById("place").value;
+  let content = document.getElementById("information");
+  let todaySection = document.getElementById("facts");
+
+  todaySection.textContent = "";
+  content.textContent = "";
   let myWeek = {};
+  if (!place) {
+    content.textContent = "please enter a location";
+    return;
+  }
   return fetch(
     "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" +
       place +
@@ -24,6 +38,9 @@ function getWeather() {
     { mode: "cors" }
   )
     .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Location not found or network error");
+      }
       return response.json();
     })
     .then(function (response) {
@@ -37,11 +54,11 @@ function getWeather() {
           humidity: response.days[i].humidity,
           rainCoverage: response.days[i].precipcover,
           date: response.days[i].datetime,
+          icon: response.days[i].icon,
         };
       }
-      let content = document.getElementById("information");
-      content.textContent = "";
 
+      console.log(response);
       for (let j = 0; j < dayList.length; j++) {
         let current_day = document.createElement("div");
 
@@ -72,7 +89,16 @@ function getWeather() {
         rainCoverage.textContent =
           "Rain coverage: " + myWeek[dayList[j]].rainCoverage;
         let photo = document.createElement("img");
-        photo.src = luffy;
+        console.log(myWeek[dayList[j]].icon);
+        if (myWeek[dayList[j]].icon == "rain") {
+          photo.src = rain;
+        } else if (myWeek[dayList[j]].icon == "partly-cloudy-day") {
+          photo.src = partyly;
+        } else if (myWeek[dayList[j]].icon == "clear-day") {
+          photo.src = clear;
+        } else {
+          photo.src = snow;
+        }
         photo.width = 100;
         photo.height = 100;
         current_day.appendChild(date);
@@ -102,7 +128,6 @@ function getWeather() {
         };
       }
 
-      let todaySection = document.getElementById("facts");
       for (let i = currentTime - 6; i <= currentTime + 6; i++) {
         let currentHour = document.createElement("div");
 
@@ -137,8 +162,39 @@ function getWeather() {
       console.log(response);
 
       return myWeek;
+    })
+    .catch(function (error) {
+      console.error("error fetching weather:", error);
+      content.textContent = "error: " + error.message;
     });
 }
+//buttons
 
-let button = document.getElementById("button");
+let button = document.getElementById("search");
 button.addEventListener("click", () => getWeather());
+
+let tempF = document.getElementById("tempF");
+tempF.addEventListener("click", () => {
+  metric = "us";
+  getWeather();
+  tempF.classList.remove("notpressed");
+  tempF.classList.add("pressed");
+  tempC.classList.remove("pressed");
+  tempC.classList.add("notpressed");
+});
+
+let tempC = document.getElementById("tempC");
+tempC.addEventListener("click", () => {
+  metric = "metric";
+  getWeather();
+  tempC.classList.remove("notpressed");
+  tempC.classList.add("pressed");
+  tempF.classList.remove("pressed");
+  tempF.classList.add("notpressed");
+});
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    getWeather();
+  }
+});

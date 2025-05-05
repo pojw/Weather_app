@@ -1,5 +1,5 @@
 body {
-  background-color: hsl(106, 74%, 62%);
+  background-color: hsl(217, 8%, 43%);
   height: vh;
   margin: 0;
   padding: 0;
@@ -10,13 +10,13 @@ body {
 #content {
   display: grid;
   grid-template-rows: 10vh 90vh;
-  border: 5px solid rebeccapurple;
 }
 
 #bar {
-  display: grid;
-  grid-template-columns: 50vh 50vh;
-  border: 5px solid pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 #information {
@@ -27,12 +27,12 @@ body {
 
 .days {
   display: grid;
-  grid-template-rows: 30px 100px repeat(6, 40px);
+  grid-template-rows: 30px 60px repeat(6, 40px);
   border: 5px green;
 }
 #weather {
   display: grid;
-  grid-template-rows: 1fr 8fr 1fr 4fr;
+  grid-template-rows: 1fr 6fr 1fr 4fr;
 }
 
 #facts {
@@ -43,4 +43,53 @@ body {
 
 .currentHour {
   display: grid;
+}
+
+#tempF,
+#tempC,
+#search {
+  border-radius: 10px;
+  height: 30px;
+  width: 150px;
+  color: white;
+}
+#search {
+  width: 100px;
+  background-color: rgb(57, 102, 170);
+}
+
+#metric {
+  display: flex;
+
+  gap: 10px;
+}
+
+#search_section {
+  display: flex;
+  gap: 10px;
+}
+#place {
+  border-radius: 10px;
+}
+
+.pressed {
+  background-color: rgb(14, 101, 112);
+}
+
+.notpressed {
+  background-color: rgb(57, 102, 170);
+}
+
+#daySection,
+#hourSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  color: rgb(21, 171, 240);
+  font-weight: bold;
+}
+
+#hourSection {
+  font-size: 40px;
 }
